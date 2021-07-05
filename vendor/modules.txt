@@ -1,27 +1,32 @@
-# fyne.io/fyne v1.4.0
-fyne.io/fyne
-fyne.io/fyne/app
-fyne.io/fyne/canvas
-fyne.io/fyne/container
-fyne.io/fyne/dialog
-fyne.io/fyne/driver/desktop
-fyne.io/fyne/driver/mobile
-fyne.io/fyne/internal
-fyne.io/fyne/internal/app
-fyne.io/fyne/internal/cache
-fyne.io/fyne/internal/driver
-fyne.io/fyne/internal/driver/glfw
-fyne.io/fyne/internal/driver/gomobile
-fyne.io/fyne/internal/painter
-fyne.io/fyne/internal/painter/gl
-fyne.io/fyne/internal/painter/software
-fyne.io/fyne/internal/test
-fyne.io/fyne/internal/widget
-fyne.io/fyne/layout
-fyne.io/fyne/storage
-fyne.io/fyne/test
-fyne.io/fyne/theme
-fyne.io/fyne/widget
+# fyne.io/fyne/v2 v2.0.3
+## explicit
+fyne.io/fyne/v2
+fyne.io/fyne/v2/app
+fyne.io/fyne/v2/canvas
+fyne.io/fyne/v2/container
+fyne.io/fyne/v2/data/binding
+fyne.io/fyne/v2/dialog
+fyne.io/fyne/v2/driver/desktop
+fyne.io/fyne/v2/driver/mobile
+fyne.io/fyne/v2/internal
+fyne.io/fyne/v2/internal/animation
+fyne.io/fyne/v2/internal/app
+fyne.io/fyne/v2/internal/cache
+fyne.io/fyne/v2/internal/driver
+fyne.io/fyne/v2/internal/driver/glfw
+fyne.io/fyne/v2/internal/driver/gomobile
+fyne.io/fyne/v2/internal/painter
+fyne.io/fyne/v2/internal/painter/gl
+fyne.io/fyne/v2/internal/painter/software
+fyne.io/fyne/v2/internal/repository
+fyne.io/fyne/v2/internal/test
+fyne.io/fyne/v2/internal/widget
+fyne.io/fyne/v2/layout
+fyne.io/fyne/v2/storage
+fyne.io/fyne/v2/storage/repository
+fyne.io/fyne/v2/test
+fyne.io/fyne/v2/theme
+fyne.io/fyne/v2/widget
 # github.com/AudriusButkevicius/pfilter v0.0.0-20190627213056-c55ef6137fc6
 github.com/AudriusButkevicius/pfilter
 # github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d
@@ -37,9 +42,13 @@ github.com/dsnet/compress/bzip2/internal/sais
 github.com/dsnet/compress/internal
 github.com/dsnet/compress/internal/errors
 github.com/dsnet/compress/internal/prefix
+# github.com/fredbi/uri v0.0.0-20181227131451-3dcfdacbaaf3
+github.com/fredbi/uri
 # github.com/fsnotify/fsnotify v1.4.9
 github.com/fsnotify/fsnotify
-# github.com/fyne-io/mobile v0.1.1
+# github.com/fyne-io/fyne-cross v1.1.0
+## explicit
+# github.com/fyne-io/mobile v0.1.3-0.20210412090810-650a3139866a
 github.com/fyne-io/mobile/app
 github.com/fyne-io/mobile/app/internal/callfn
 github.com/fyne-io/mobile/event/key
@@ -57,7 +66,7 @@ github.com/go-chi/chi/middleware
 # github.com/go-gl/gl v0.0.0-20190320180904-bf2b1f2f34d7
 github.com/go-gl/gl/v3.1/gles2
 github.com/go-gl/gl/v3.2-core/gl
-# github.com/go-gl/glfw/v3.3/glfw v0.0.0-20200625191551-73d3c3675aa3
+# github.com/go-gl/glfw/v3.3/glfw v0.0.0-20210410170116-ea3d685f79fb
 github.com/go-gl/glfw/v3.3/glfw
 github.com/go-gl/glfw/v3.3/glfw/glfw/deps
 github.com/go-gl/glfw/v3.3/glfw/glfw/deps/glad
@@ -68,7 +77,7 @@ github.com/go-gl/glfw/v3.3/glfw/glfw/src
 # github.com/go-ole/go-ole v1.2.4
 github.com/go-ole/go-ole
 github.com/go-ole/go-ole/oleutil
-# github.com/godbus/dbus/v5 v5.0.3
+# github.com/godbus/dbus/v5 v5.0.4
 github.com/godbus/dbus/v5
 # github.com/goki/freetype v0.0.0-20181231101311-fa8a33aabaff
 github.com/goki/freetype
@@ -77,6 +86,7 @@ github.com/goki/freetype/truetype
 # github.com/golang/snappy v0.0.1
 github.com/golang/snappy
 # github.com/google/go-github v17.0.0+incompatible
+## explicit
 github.com/google/go-github/github
 # github.com/google/go-querystring v1.0.0
 github.com/google/go-querystring/query
@@ -95,6 +105,7 @@ github.com/mattn/go-isatty
 # github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d
 github.com/mgutz/ansi
 # github.com/mholt/archiver v3.1.1+incompatible
+## explicit
 github.com/mholt/archiver
 # github.com/mmcloughlin/avo v0.0.0-20200523190732-4439b6b2c061
 github.com/mmcloughlin/avo/attr
@@ -123,8 +134,6 @@ github.com/pierrec/lz4/internal/xxh32
 github.com/pkg/errors
 # github.com/pmezard/go-difflib v1.0.0
 github.com/pmezard/go-difflib/difflib
-# github.com/rakyll/statik v0.1.7
-github.com/rakyll/statik/fs
 # github.com/shirou/gopsutil v2.20.5+incompatible
 github.com/shirou/gopsutil/cpu
 github.com/shirou/gopsutil/internal/common
@@ -132,10 +141,13 @@ github.com/shirou/gopsutil/mem
 github.com/shirou/gopsutil/net
 github.com/shirou/gopsutil/process
 # github.com/sirupsen/logrus v1.7.0
+## explicit
 github.com/sirupsen/logrus
 # github.com/skratchdot/open-golang v0.0.0-20200116055534-eef842397966
+## explicit
 github.com/skratchdot/open-golang/open
 # github.com/skycoin/dmsg v0.0.0-20201216183836-dae8a7acfc14
+## explicit
 github.com/skycoin/dmsg
 github.com/skycoin/dmsg/cipher
 github.com/skycoin/dmsg/disc
@@ -148,6 +160,7 @@ github.com/skycoin/dmsg/servermetrics
 # github.com/skycoin/noise v0.0.0-20180327030543-2492fe189ae6
 github.com/skycoin/noise
 # github.com/skycoin/skycoin v0.27.1
+## explicit
 github.com/skycoin/skycoin/src/cipher
 github.com/skycoin/skycoin/src/cipher/base58
 github.com/skycoin/skycoin/src/cipher/ripemd160
@@ -155,6 +168,7 @@ github.com/skycoin/skycoin/src/cipher/secp256k1-go
 github.com/skycoin/skycoin/src/cipher/secp256k1-go/secp256k1-go2
 github.com/skycoin/skycoin/src/util/logging
 # github.com/skycoin/skywire v0.2.4-0.20201222094854-2e3d9f8fb380
+## explicit
 github.com/skycoin/skywire/internal/httpauth
 github.com/skycoin/skywire/internal/netutil
 github.com/skycoin/skywire/internal/packetfilter
@@ -200,6 +214,7 @@ github.com/srwiley/rasterx
 # github.com/stretchr/objx v0.1.1
 github.com/stretchr/objx
 # github.com/stretchr/testify v1.6.1
+## explicit
 github.com/stretchr/testify/assert
 github.com/stretchr/testify/mock
 github.com/stretchr/testify/require
@@ -249,6 +264,7 @@ golang.org/x/image/math/f64
 golang.org/x/image/math/fixed
 golang.org/x/image/vector
 # golang.org/x/net v0.0.0-20200625001655-4c5254603344
+## explicit
 golang.org/x/net/bpf
 golang.org/x/net/context
 golang.org/x/net/html

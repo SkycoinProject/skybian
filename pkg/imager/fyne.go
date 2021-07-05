@@ -6,16 +6,16 @@ import (
 	"errors"
 	"fmt"
 	"net"
-	"net/http"
 	"os"
 	"path/filepath"
 	"time"
 
-	"fyne.io/fyne"
-	"fyne.io/fyne/app"
-	"fyne.io/fyne/dialog"
-	"fyne.io/fyne/layout"
-	"fyne.io/fyne/widget"
+	"fyne.io/fyne/v2"
+	"fyne.io/fyne/v2/app"
+	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/dialog"
+	"fyne.io/fyne/v2/layout"
+	"fyne.io/fyne/v2/widget"
 	"github.com/sirupsen/logrus"
 	"github.com/skratchdot/open-golang/open"
 	"github.com/skycoin/dmsg/cipher"
@@ -24,13 +24,18 @@ import (
 	"github.com/skycoin/skybian/pkg/imager/widgets"
 )
 
+// ImgType indicates the OS the timage is being built for
 type ImgType string
 
 const (
-	TypeSkybian     ImgType = "skybian"
-	TypeRaspbian            = "raspbian"
-	TypeRaspbian64          = "raspbian64"
-	TypeSkybianOPi3         = "skybian-opi3"
+	// TypeSkybian represents the OS skybian for orange prime
+	TypeSkybian ImgType = "skybian"
+	// TypeRaspbian represents the OS raspbian
+	TypeRaspbian = "raspbian"
+	// TypeRaspbian64 represents the 64-bit OS raspbian64
+	TypeRaspbian64 = "raspbian64"
+	// TypeSkybianOPi3 represents the OS skybian for orange pi 3
+	TypeSkybianOPi3 = "skybian-opi3"
 )
 
 // DefaultImgNumber is the default number of visor boot parameters to generate.
@@ -38,8 +43,7 @@ const DefaultImgNumber = 1
 
 // FyneUI is a UI to handle the image creation process (using Fyne).
 type FyneUI struct {
-	log    logrus.FieldLogger
-	assets http.FileSystem
+	log logrus.FieldLogger
 
 	// Fyne parts.
 	app fyne.App
@@ -64,10 +68,10 @@ type FyneUI struct {
 }
 
 // NewFyneUI creates a new Fyne UI.
-func NewFyneUI(log logrus.FieldLogger, assets http.FileSystem) *FyneUI {
+func NewFyneUI(log logrus.FieldLogger, icon *fyne.StaticResource) *FyneUI {
 	fg := new(FyneUI)
 	fg.log = log
-	fg.assets = assets
+	// fg.assets = assets
 
 	fg.locations = []string{
 		"From remote server",
@@ -76,7 +80,7 @@ func NewFyneUI(log logrus.FieldLogger, assets http.FileSystem) *FyneUI {
 	fg.resetPage2Values()
 
 	fa := app.New()
-	fa.SetIcon(loadResource(fg.assets, "/icon.png"))
+	fa.SetIcon(icon)
 	fg.app = fa
 
 	w := fa.NewWindow("skyimager-gui")
@@ -100,7 +104,7 @@ func (fg *FyneUI) listBaseImgs(t ImgType) ([]string, string) {
 
 	title := "Please Wait"
 	msg := "Obtaining base image releases from GitHub..."
-	d := dialog.NewProgressInfinite(title, msg, fg.w)
+	d := dialog.NewCustom(title, msg, widget.NewProgressBarInfinite(), fg.w)
 
 	d.Show()
 	rs, lr, err := ListReleases(ctx, t, fg.log)
@@ -117,7 +121,7 @@ func (fg *FyneUI) listBaseImgs(t ImgType) ([]string, string) {
 		return nil, ""
 	}
 
-	fg.releases[t] = append(rs)
+	fg.releases[t] = rs
 	return releaseStrings(rs), lr.String()
 }
 
@@ -147,7 +151,7 @@ func (fg *FyneUI) generateBPS() (string, error) {
 		bpsSlice = append(bpsSlice, vBps)
 	}
 	fg.bps = bpsSlice
-	jsonStr, _ := json.MarshalIndent(bpsSlice, "", "    ")
+	jsonStr, _ := json.MarshalIndent(bpsSlice, "", "    ") //nolint
 	return string(jsonStr), nil
 }
 
@@ -211,7 +215,8 @@ func (fg *FyneUI) build() {
 		}
 
 		// Extract section.
-		extDialog := dialog.NewProgressInfinite("Extracting Archive", builder.DownloadPath(), fg.w)
+
+		extDialog := dialog.NewCustom("Extracting Archive", builder.DownloadPath(), widget.NewProgressBarInfinite(), fg.w)
 		extDialog.Show()
 		err = builder.ExtractArchive()
 		extDialog.Hide()
@@ -254,7 +259,7 @@ func (fg *FyneUI) build() {
 	}
 
 	// Finalize section.
-	finDialog := dialog.NewProgressInfinite("Building Final Images", builder.finalDir, fg.w)
+	finDialog := dialog.NewCustom("Building Final Images", builder.finalDir, widget.NewProgressBarInfinite(), fg.w)
 	finDialog.Show()
 	err = builder.MakeFinalImages(imgs[0], bpsSlice)
 	finDialog.Hide()
@@ -265,12 +270,12 @@ func (fg *FyneUI) build() {
 
 	// Inform user of completion.
 	createREADME(fg.log, filepath.Join(builder.finalDir, "README.txt"))
-	cont := fyne.NewContainerWithLayout(layout.NewVBoxLayout(),
+	cont := container.New(layout.NewVBoxLayout(),
 		widget.NewLabel("Successfully built images!"),
 		widget.NewLabel("Images are built to: "+builder.finalDir),
-		widget.NewButton("Open Folder", func() { _ = open.Run(builder.finalDir) }),
+		widget.NewButton("Open Folder", func() { _ = open.Run(builder.finalDir) }), //nolint
 		widget.NewLabel("To flash the images, use a tool such as balenaEtcher:"),
-		widget.NewButton("Open URL", func() { _ = open.Run("https://www.balena.io/etcher") }),
+		widget.NewButton("Open URL", func() { _ = open.Run("https://www.balena.io/etcher") }), //nolint
 	)
 	dialog.ShowCustom("Success", "Close", cont, fg.w)
 }
